@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1','localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,7 +87,8 @@ DATABASES = {
         'PORT': '5432',
         
     }
-}   DATABASE_PUBLIC_URL = 'postgresql://postgres:kyqYgxeWoekUACTUSZNQXxvdXUtiOxeX@yamabiko.proxy.rlwy.net:53735/railway'
+}   
+DATABASE_PUBLIC_URL = 'postgresql://postgres:kyqYgxeWoekUACTUSZNQXxvdXUtiOxeX@yamabiko.proxy.rlwy.net:53735/railway'
 
 
 # Password validation
@@ -125,7 +128,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR/'bookapp/static',BASE_DIR/'templates']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'bookapp/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 MEDIA_URL = '/media/'

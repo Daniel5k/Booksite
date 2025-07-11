@@ -79,16 +79,11 @@ WSGI_APPLICATION = 'booksite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'LZRWfShzUaTtTwrQWsMtpQBOYpQYnPTo',
-        'HOST': 'postgres.railway.internal',
-        'PORT': '5432',
-        
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }   
-DATABASE_PUBLIC_URL = 'postgresql://postgres:kyqYgxeWoekUACTUSZNQXxvdXUtiOxeX@yamabiko.proxy.rlwy.net:53735/railway'
+#DATABASE_PUBLIC_URL = 'postgresql://postgres:kyqYgxeWoekUACTUSZNQXxvdXUtiOxeX@yamabiko.proxy.rlwy.net:53735/railway'
 
 
 # Password validation

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+
+    All_Books
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for book in all_books%}
+    <div class="card m-2" style="width:400px" >
+        <div class="row"><h4 class="card-title" style="margin: 20px;">{{ book.title }}</h4></div>
+            <div class="card-body">
+            <img class="img-fluid" src="{{book.cover_image.url}}" alt="Card image" width="100" height="100"/>
+            <p class="card-text"> Summary of the book is : <strong> {{ book.summary}} </strong></p>
+            <p class="card-text">The author of this book is: <strong> {{ book.author }} </strong> </p>    
+        </div>
+    </div>
+    {% endfor %}
+    <a href="/book" class="btn btn-primary" style="margin: 20px;">Go back to home</a>
+</div>
+{% endblock %}

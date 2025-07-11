@@ -1,0 +1,21 @@
+{% extends 'base.html'%} 
+{% load static %}
+
+{% block title %}
+    Book Site | {{ category.slug}}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="column"><h4></h4></div>
+    <div class="row">
+        {% for book in category.books.all %}
+            <a href="{% url 'book_detail' book.slug %}">
+                    <div class="col-sm-3">
+                        <img src="{{ book.cover_image.url }}" alt="book.name" class="img-fluid m-3">
+                    </div>
+                </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

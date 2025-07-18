@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme =  >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,41 +23,34 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'all_books' %}">All Books</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">Recommended  Book</a>
-              </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="text" placeholder="Search">
-              <button class="btn btn-primary m-2" type="button">Search</button>
+            <form class="d-flex" method="">
+              <!-- <input class="form-control me-2" type="text" placeholder="Search"> -->
+              {% csrf_token %}
+              {{ search.name_of_book }}
+              <button class="btn btn-primary m-2" type="subit" >Search</button>
             </form>
             <button class="btn btn-outline-success btn-sm m-2" type="button">Sign Up</button>
             <button class="btn btn-outline-success btn-sm m-2" type="button">Login</button>
           </div>
         </div>
       </nav>
-    
-      <ul class="pagination pagination-sm justify-content-center">
-        {% for category in categories %}
-        <li class="page-item m-1"><a class="page-link" href="{% url 'category_detail' category.slug %}">{{ category.name }}</a></li>
-        {% endfor %}
-      </ul> 
-
+<div class="container-fluid">
+  <ul class="pagination pagination-sm justify-content-center">
+    {% for category in categories %}
+        <li class="page-item m-1">
+          <a class="page-link" href="{% url 'category_detail' category.slug %}">
+            {{ category.name }}
+          </a>
+        </li>
+    {% endfor %}
+  </ul> 
+</div>
     {% block content %}
 
     {% endblock %}
 
-    <div class="container mt-3">
-        
-        <h4>The Different Books to read</h4>
-        <span href="" class="badge bg-primary">Primary</span>
-        <span class="badge bg-secondary">Secondary</span>
-        <span class="badge bg-success">Success</span>
-        <span class="badge bg-danger">Danger</span>
-        <span class="badge bg-warning">Warning</span>
-        <span class="badge bg-info">Info</span>
-        
-      </div>
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

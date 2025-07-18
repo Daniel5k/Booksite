@@ -42,7 +42,11 @@ def category_detail(request, slug):
 
 def book_detail(request,slug):
     books = Book.objects.get(slug=slug)
+    book_category = books.category.first() 
+    similar_books = Book.objects.filter(category__name__startswith = book_category)
     context = {
-        'books': books
+        'books': books,
+        'similar_books': similar_books,
     }
     return render(request, 'book_detail.html', context)
+

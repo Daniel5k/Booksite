@@ -17,7 +17,7 @@
         </div>
     </div>
     <div>
-        <a href="/book" class="btn btn-secondary btn-sm my-3">Go back to home</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-sm my-3">Go back to home</a>
     </div>
 </div>
 <hr>
@@ -30,6 +30,7 @@
                 <div>
                     <div class="uk-card uk-card-default uk-card-body">
                         <img class="rounded img-thumbnail" src="{{ book.cover_image.url }}" alt="" style="width: 100px; height: 100px;">
+                        <img class="rounded img-thumbnail m-2" src="{{ book.cover_image.url }}" alt="" style="width: 100px; height: 100px;">
                     </div>
                 </div>
             </a>

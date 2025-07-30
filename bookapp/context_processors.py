@@ -1,17 +1,20 @@
-from .models import Category
+from .models import Category, Book
 from .forms import bookSearchForm
+
 
 def category_links(request):
     categories = Category.objects.all()
 
     return {'categories': categories}
 
-def searchForm(request):
-    search = bookSearchForm
+def BookSearchForm(request):
+    searchForm = bookSearchForm
 
     if request.method == 'POST':
-        search = bookSearchForm(request.POST)
-        if search.is_valid():
-            search.save()
+        searchForm = bookSearchForm(request.POST)
+        if searchForm.is_valid():
+            searchForm.save()
 
-    return {'search': search}
+    return {'searchForm': searchForm}
+
+

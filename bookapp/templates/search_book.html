@@ -1,0 +1,30 @@
+{% extends 'base.html'%} 
+{% load static %}
+
+{% block title %}
+    Book Site | {{ book.slug}}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="height: 100vh;">
+        <div class="row"><h4>Search Result </h4></div>
+        <div class="row">
+            {% if searched_books %}
+        {% for book in searched_books %}
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                <a href="{% url 'book_detail' book.slug %}">
+                    <div>
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <img class="rounded img-fluid m-2" src="{{ book.cover_image.url }}" alt="">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor%}
+        </div>
+        {% else %}
+            <h3>No Result Return </h3>
+        {% endif %}
+
+{% endblock %}

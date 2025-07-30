@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Book, Category
 from django.http import HttpResponse
 from django.template import loader
-
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
 # Create your views here.
 
 
@@ -50,3 +51,35 @@ def book_detail(request,slug):
     }
     return render(request, 'book_detail.html', context)
 
+def search_book(request):
+    searched_books = Book.objects.filter(title__icontains = request.POST.get('name_of_book'))
+    context = {
+        'searched_books': searched_books
+    }
+    return render(request, 'search_book.html', context)
+
+def register_page(request):
+    registerForm = CreateUserForm()
+
+    if request.method == 'POST':
+        registerForm = CreateUserForm(request.POST)
+        if registerForm.is_valid():
+            registerForm.save()
+       
+   
+
+    return render(request, 'register_page.html', {
+        'registerForm' :registerForm
+    })
+
+def login_page(request):
+    context = {
+
+    }
+    return render(request, 'loginpage.html', context)
+
+def logout_page(request):
+    context = {
+
+    }
+    return render(request, 'logout_page.html', context)

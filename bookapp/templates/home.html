@@ -10,26 +10,28 @@
 
 
 
-<div class="container">
-    <div class="row"><h4>Recommended Books</h4></div>
-    <div class="row">
+<section id="recommended_books">
+    <div class="container" style="height: 100vh;">
+        <div class="row"><h4>Recommended Books</h4></div>
+        <div class="row">
         {% for book in recommended_books %}
-        <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-            <a href="{% url 'book_detail' book.slug %}">
-                <div>
-                    <div class="uk-card uk-card-default uk-card-body">
-                        <img class="rounded img-fluid m-2" src="{{ book.cover_image.url }}" alt="">
+            <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                <a href="{% url 'book_detail' book.slug %}">
+                    <div>
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <img class="rounded img-fluid m-2" src="{{ book.cover_image.url }}" alt="">
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
         {% endfor%}
+        </div>
     </div>
-</div>
+</section>
 
 
 
-<div class="container">
+<section class="container" id="fiction_books">
     <div class="row"><h4>Fiction Books</h4></div>
     <div class="row">
         {% for book in fiction_books %}
@@ -44,9 +46,9 @@
         </div>
         {% endfor%}
     </div>
-</div>
+</section>
 
-<div class="container">
+<section class="container" id="business_books">
     <div class="row"><h4>Business Books</h4></div>
     <div class="row">
         {% for book in business_books %}
@@ -62,5 +64,5 @@
         </div>
         {% endfor%}
     </div>
-</div>
+</section>
 {% endblock %}

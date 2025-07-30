@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 class Category(models.Model):
@@ -26,8 +27,8 @@ class Book(models.Model):
 
 
 class BookSearch(models.Model):
-    name_of_Books = models.CharField(max_length=100)
+    name_of_book = models.CharField(max_length=100)
 
     def __str__(self):
-        
-        return self.name_of_Books
+        return self.name_of_book
+    

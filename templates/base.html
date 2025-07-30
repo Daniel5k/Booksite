@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Book Website{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loginpage.css' %}">
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="margin: 20px;">
@@ -24,14 +25,22 @@
                 <a class="nav-link" href="{% url 'all_books' %}">All Books</a>
               </li>
             </ul>
-            <form class="d-flex" method="">
+            <form class="d-flex" method="POST" action="{% url 'search_book' %}">
               <!-- <input class="form-control me-2" type="text" placeholder="Search"> -->
               {% csrf_token %}
-              {{ search.name_of_book }}
-              <button class="btn btn-primary m-2" type="subit" >Search</button>
+              {{ searchForm.name_of_book }}
+              <button class="btn btn-primary m-2" type="submit" >Search</button>
             </form>
-            <button class="btn btn-outline-success btn-sm m-2" type="button">Sign Up</button>
-            <button class="btn btn-outline-success btn-sm m-2" type="button">Login</button>
+            <a href="{% url 'register_page' %}"  data-bs-toggle="modal" data-bs-target="#myModal">
+              <button class="btn btn-outline-success btn-sm m-2" data-bs-toggle="modal" data-bs-target="#myModal">
+                Sign Up 
+              </button>
+            </a>
+            <a href="{% url 'login' %}">
+              <button class="btn btn-outline-success btn-sm m-2" type="button" href="{% url 'login' %}">
+                Login
+              </button>
+            </a>
           </div>
         </div>
       </nav>

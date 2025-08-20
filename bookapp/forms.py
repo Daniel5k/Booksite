@@ -15,7 +15,8 @@ class bookSearchForm(forms.ModelForm):
         fields = ['name_of_book']
 
 class CreateUserForm(UserCreationForm):
-    email =forms.CharField(max_length=255, widget=forms.EmailInput(attrs={
+    email =forms.EmailField(max_length=255, 
+    widget=forms.EmailInput(attrs={
         'class': 'form-control',
 
         'placeholder' : 'Enter email address'

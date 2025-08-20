@@ -14,7 +14,7 @@ def BookSearchForm(request):
         searchForm = bookSearchForm(request.POST)
         if searchForm.is_valid():
             searchForm.save()
-
+    
     return {'searchForm': searchForm}
 
 

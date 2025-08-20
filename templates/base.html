@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/loginpage.css' %}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="margin: 20px;">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" style=" width: 100%;">
         <div class="container-fluid">
           <a class="navbar-brand" href="javascript:void(0)"><strong>Daniel Books</strong></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -31,16 +31,30 @@
               {{ searchForm.name_of_book }}
               <button class="btn btn-primary m-2" type="submit" >Search</button>
             </form>
+            {%if user.is_authenticated%}
+              <div class="dropdown">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                  Hello, {{user}}
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
+                  <li><a class="dropdown-item" href="#">Link 2</a></li>
+                  <li><a class="dropdown-item" href="#">Link 3</a></li>
+                </ul>
+              </div>
+            {% else %}
             <a href="{% url 'register_page' %}"  data-bs-toggle="modal" data-bs-target="#myModal">
-              <button class="btn btn-outline-success btn-sm m-2" data-bs-toggle="modal" data-bs-target="#myModal">
+              <button class="btn btn-outline-success btn-sm m-2"  data-bs-toggle="modal" data-bs-target="#myModal">
                 Sign Up 
               </button>
             </a>
+            
             <a href="{% url 'login' %}">
               <button class="btn btn-outline-success btn-sm m-2" type="button" href="{% url 'login' %}">
                 Login
               </button>
             </a>
+            {% endif %}
           </div>
         </div>
       </nav>

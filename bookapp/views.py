@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Book, Category
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
@@ -40,7 +44,7 @@ def category_detail(request, slug):
         'category': category
     }
     return render(request, 'genre_detail.html', context)
-
+@login_required(login_url='login')
 def book_detail(request,slug):
     books = Book.objects.get(slug=slug)
     book_category = books.category.first() 
@@ -65,6 +69,8 @@ def register_page(request):
         registerForm = CreateUserForm(request.POST)
         if registerForm.is_valid():
             registerForm.save()
+            messages.info(request, 'Account Created Successfully')
+            return redirect('login')
        
    
 
@@ -73,12 +79,24 @@ def register_page(request):
     })
 
 def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password1')
+        user = authenticate(request, username = username, password = password)
+        if user:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request, 'Invalid Credentials!!!')
+
     context = {
 
     }
     return render(request, 'loginpage.html', context)
 
 def logout_page(request):
+    logout(request)
+    return redirect('login')
     context = {
 
     }

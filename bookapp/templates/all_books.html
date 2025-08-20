@@ -17,7 +17,7 @@
             <a href="{% url 'book_detail' book.slug %}">
                 <div>
                     <div class="uk-card uk-card-default uk-card-body">
-                        <img class="rounded img-fluid m-2" src="{{ book.cover_image.url }}" alt="">
+                        <img class="rounded img-fluid m-2" src="{{ book.cover_image.url }}" href='{{ book.cover_image.url }}' alt="">
                     </div>
                 </div>
             </a>
